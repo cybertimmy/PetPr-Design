@@ -23,6 +23,7 @@
 		1A8ABDF92C48D6FD00187AB1 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8ABDF82C48D6FD00187AB1 /* Extension + UIViewController.swift */; };
 		1A8BC94D2C49A2B30010AA0D /* MapScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8BC94C2C49A2B30010AA0D /* MapScreenViewController.swift */; };
 		1A8BC94F2C49A2C10010AA0D /* MapScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8BC94E2C49A2C10010AA0D /* MapScreenView.swift */; };
+		1A8C91CD2C51FDEC00842C4D /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C91CC2C51FDEC00842C4D /* Collection.swift */; };
 		1A8FD58D2C4C74BE00DAF7CD /* MapAnnotationArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8FD58C2C4C74BE00DAF7CD /* MapAnnotationArray.swift */; };
 		1A94ABA92C37ED1700E715DE /* CustomPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94ABA82C37ED1700E715DE /* CustomPresentationViewController.swift */; };
 		1A94ABAB2C37F24900E715DE /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94ABAA2C37F24900E715DE /* CustomPresentationController.swift */; };
@@ -62,6 +63,7 @@
 		1A8ABDF82C48D6FD00187AB1 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 		1A8BC94C2C49A2B30010AA0D /* MapScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewController.swift; sourceTree = "<group>"; };
 		1A8BC94E2C49A2C10010AA0D /* MapScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenView.swift; sourceTree = "<group>"; };
+		1A8C91CC2C51FDEC00842C4D /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		1A8FD58C2C4C74BE00DAF7CD /* MapAnnotationArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationArray.swift; sourceTree = "<group>"; };
 		1A94ABA82C37ED1700E715DE /* CustomPresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationViewController.swift; sourceTree = "<group>"; };
 		1A94ABAA2C37F24900E715DE /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,14 @@
 			path = MapScreen;
 			sourceTree = "<group>";
 		};
+		1A8C91CE2C52008300842C4D /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				1A8C91CC2C51FDEC00842C4D /* Collection.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
 		1A94ABA72C37ECC200E715DE /* PresentationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +182,7 @@
 			children = (
 				1A8ABDF32C48C76800187AB1 /* GoogleService-Info.plist */,
 				1A9C27EF2C1B9FC100193C12 /* Info.plist */,
+				1A8C91CE2C52008300842C4D /* Collection */,
 				1A9C27F72C1BA1EB00193C12 /* Recources */,
 				1AE8115F2C2FC40C002A5784 /* Extension */,
 				1A8BC94B2C49A2720010AA0D /* MapScreen */,
@@ -381,6 +392,7 @@
 				38F092532C2F0F1400DCA2D5 /* PicturesDTO.swift in Sources */,
 				1A4DFC6D2C3D74BD0049285F /* CustomPresentationCollectionViewCell.swift in Sources */,
 				1A551EF12C3EB628003EC98E /* LoginScreenViewController.swift in Sources */,
+				1A8C91CD2C51FDEC00842C4D /* Collection.swift in Sources */,
 				1A03AF5A2C22706200F5E28D /* CustomHomeCollectionViewCell.swift in Sources */,
 				1A9C27FC2C1BA3CF00193C12 /* HomeView.swift in Sources */,
 				1A94ABA92C37ED1700E715DE /* CustomPresentationViewController.swift in Sources */,

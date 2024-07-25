@@ -97,7 +97,7 @@ extension HomeView {
     
     private func getSectionFor(index: Int) -> NSCollectionLayoutSection {
         switch index {
-        case 0: return createSection(itemWidth: .fractionalWidth(1),
+        case 0: return Collection.createSection(itemWidth: .fractionalWidth(1),
                                      itemHeight: .absolute(200),
                                      interItemSpacing: 10,
                                      groupWidth: .fractionalWidth(1 / 2),
@@ -106,7 +106,7 @@ extension HomeView {
                                      headerHight: .absolute(50),
                                      sectionInsets: .init(top: 10, leading: 10, bottom: 120, trailing: 10),
                                      scrollBehavior: .continuous)
-        case 1: return createSection(itemWidth: .fractionalWidth(1),
+        case 1: return Collection.createSection(itemWidth: .fractionalWidth(1),
                                      itemHeight: .absolute(200),
                                      interItemSpacing: 10,
                                      groupWidth: .fractionalWidth(1 / 2),
@@ -115,7 +115,7 @@ extension HomeView {
                                      headerHight: .absolute(50),
                                      sectionInsets: .init(top: 10, leading: 10, bottom: 120, trailing: 10),
                                      scrollBehavior: .continuous)
-        case 2: return createSection(itemWidth: .fractionalWidth(1),
+        case 2: return Collection.createSection(itemWidth: .fractionalWidth(1),
                                      itemHeight: .absolute(200),
                                      interItemSpacing: 10,
                                      groupWidth: .fractionalWidth(1 / 2),
@@ -126,46 +126,7 @@ extension HomeView {
                                      scrollBehavior: .continuous)
         default: break
         }
-        return emptySection()
-    }
-    
-    private func createSection(itemWidth: NSCollectionLayoutDimension,
-                               itemHeight: NSCollectionLayoutDimension,
-                               interItemSpacing: Double = 0,
-                               groupWidth: NSCollectionLayoutDimension,
-                               groupHeight:NSCollectionLayoutDimension,
-                               interGroupSpacing: Double = 0,
-                               headerHight: NSCollectionLayoutDimension? = nil, 
-                               sectionInsets: NSDirectionalEdgeInsets = .zero, 
-                               scrollBehavior: UICollectionLayoutSectionOrthogonalScrollingBehavior = .none) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: itemWidth,
-                                              heightDimension: itemHeight)
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: groupWidth,
-                                               heightDimension: groupHeight)
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitems: [item])
-        group.interItemSpacing = .fixed(interItemSpacing)
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = scrollBehavior
-        section.interGroupSpacing = interGroupSpacing
-        section.contentInsets = sectionInsets
-        section.boundarySupplementaryItems = []
-        
-        if let headerHight = headerHight {
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                    heightDimension: headerHight)
-            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: HeaderCollectionReusableView.description(), alignment: .top)
-            section.boundarySupplementaryItems.append(header)
-        }
-        return section
-    }
-    
-    private func emptySection(height: CGFloat = 0) -> NSCollectionLayoutSection {
-        return createSection(itemWidth: .fractionalWidth(1),
-                             itemHeight: .absolute(height),
-                             groupWidth: .fractionalWidth(1),
-                             groupHeight: .absolute(1))
+        return Collection.emptySection()
     }
 }
 
@@ -192,12 +153,13 @@ extension HomeView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == HeaderCollectionReusableView.self.description() {
             let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.identifer, for: indexPath) as! HeaderCollectionReusableView
-            if indexPath.section == 0 {
-                cell.titleAndSubtitle(text:"Design appartament")
-            } else if indexPath.section == 1 {
-                cell.titleAndSubtitle(text: "Design bathroom")
-            } else if indexPath.section == 2 {
-                cell.titleAndSubtitle(text: "Design children`s room ")
+                
+            switch indexPath.section {
+            case 0: cell.titleAndSubtitle(text:"Design appartament")
+            case 1: cell.titleAndSubtitle(text: "Design bathroom")
+            case 2: cell.titleAndSubtitle(text: "Design children`s room ")
+            default:
+                break
             }
             return cell
         }

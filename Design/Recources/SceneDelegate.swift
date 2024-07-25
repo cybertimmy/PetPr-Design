@@ -17,7 +17,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navagationController = UINavigationController(rootViewController: loginVC)
         self.window?.rootViewController = navagationController
         self.window?.makeKeyAndVisible()
-    }
+        
+//        if Auth.auth().currentUser != nil {
+//            let tabBar = TabBarController()
+//            let navigationController = UINavigationController(rootViewController: tabBar)
+//            self.window?.rootViewController = navigationController
+//        } else {
+//            let loginVC = LoginScreenViewContoller()
+//            let navigationController = UINavigationController(rootViewController: loginVC)
+//            self.window?.rootViewController = navigationController
+//        }
+//        self.window?.makeKeyAndVisible()
+
+}
     
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -46,7 +58,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 

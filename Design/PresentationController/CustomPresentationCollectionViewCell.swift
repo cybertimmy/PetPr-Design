@@ -27,6 +27,7 @@ final class CustomPresentationCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupAppereance()
@@ -51,7 +52,7 @@ final class CustomPresentationCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupAppereance() {
-        self.addSubviews(titleLabel, subtitleLabel, toggleSwitch)
+        self.addSubviews(titleLabel,subtitleLabel,toggleSwitch)
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 25),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),

@@ -82,7 +82,7 @@ final class MapScreenViewController: UIViewController {
             guard let placeMarkLocation = placemark?.location else {return}
             annotation.coordinate = placeMarkLocation.coordinate
             MapAnnotationArray.annotationArray.append(annotation)
-            if MapAnnotationArray.annotationArray.count > 2 {
+            if MapAnnotationArray.annotationArray.count > 1 {
                 mapScreenView.resetButton.isHidden = false
                 mapScreenView.routeButton.isHidden = false
             }
