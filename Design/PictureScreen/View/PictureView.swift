@@ -34,6 +34,7 @@ final class PictureView: UIView, UICollectionViewDataSource  {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCollectionViewAndSearchBar()
+        changeTextColorSearchBar() 
         constraints()
     }
     
@@ -44,6 +45,12 @@ final class PictureView: UIView, UICollectionViewDataSource  {
     private func setupCollectionViewAndSearchBar() {
         collectionView.dataSource = self
         searchBar.delegate = self
+    }
+    
+    private func changeTextColorSearchBar() {
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.textColor = UIColor.white
+        }
     }
 
     private func constraints() {

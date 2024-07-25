@@ -1,13 +1,6 @@
-//
-//  PictureModel.swift
-//  Minimalism Productive
-//
-//  Created by Boris Dobretsov on 28/6/24.
-//
-
 import Foundation
 
-class PictureModel {
+final class PictureModel {
     
     let service: APIService
     
@@ -15,7 +8,7 @@ class PictureModel {
         self.service = service
     }
     
-    func getPicture(query: String, completion: @escaping (APIResponce) -> ()) {
+   private func getPicture(query: String, completion: @escaping (APIResponce) -> ()) {
         service.fetchPhotos(query: query) { result in
             if result != nil {
                 completion(result!)

@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class Collection {
+final class Collection {
     static func createSection(itemWidth: NSCollectionLayoutDimension,
                                itemHeight: NSCollectionLayoutDimension,
                                interItemSpacing: Double = 0,

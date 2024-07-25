@@ -18,11 +18,16 @@ final class CustomPresentationViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.view = customPresentationView
+        actionCalculateMeters()
         setupApperiance()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+        
+    private func actionCalculateMeters() {
+        customPresentationView.resultButton.addTarget(self, action: #selector(calculateMeters), for: .touchUpInside)
     }
     
     private func setupApperiance() {
@@ -35,5 +40,22 @@ final class CustomPresentationViewController: UIViewController {
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 300),
         ])
+    }
+}
+
+extension CustomPresentationViewController {
+    @objc private func calculateMeters() {
+        guard let text1 = customPresentationView.lengthTextField.text, let text2 = customPresentationView.widthTextField.text else {
+            customPresentationView.resultTextField.text = "Error! Feel all fields"
+            return
+        }
+        guard let num1 = Double(text1), let num2 = Double(text2) else {
+            customPresentationView.resultTextField.text = "Error convert"
+            return
+        }
+        let result = num1 * num2
+        customPresentationView.resultTextField.text = "\(result)"
+        customPresentationView.lengthTextField.text = ""
+        customPresentationView.widthTextField.text = ""
     }
 }
