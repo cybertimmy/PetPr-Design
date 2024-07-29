@@ -1,16 +1,14 @@
 import UIKit
 
-protocol OpenDetailScreen: AnyObject {
-    func openDetailScreen(image: UIImage)
-}
-
 final class HomeViewController: UIViewController {
     
     private var isHighlighted = false
     private let customFirstView: HomeView
-    
+    private let customCell: OuterCollectionViewCell
+
     init() {
         self.customFirstView = HomeView()
+        self.customCell = OuterCollectionViewCell()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -20,14 +18,14 @@ final class HomeViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        customFirstView.openDetailsScreenDelegate = self
         self.view = customFirstView
         setupTitle()
-        tapgasture()
+        tapGesture()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customCell.delegate = self
     }
     
     private func setupTitle() {
@@ -44,7 +42,7 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
 
 extension HomeViewController {
     
-    private func tapgasture() {
+    private func tapGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(presentPhotoLibrary))
         customFirstView.userImage.isUserInteractionEnabled = true
         customFirstView.userImage.addGestureRecognizer(tap)
@@ -58,18 +56,28 @@ extension HomeViewController {
     }
 }
 
-extension HomeViewController: OpenDetailScreen {
-    func openDetailScreen(image: UIImage) {
+//extension HomeViewController {
+//    func openDetailScreen(image: UIImage) {
+//        let customScreen = CustomPresentationViewController(image: image)
+//        customScreen.modalPresentationStyle = .pageSheet
+//        customScreen.sheetPresentationController?.prefersGrabberVisible = true
+//        customScreen.transitioningDelegate = self
+//        present(customScreen, animated: true)
+//    }
+//}
+
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+    public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return CustomPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+extension HomeViewController: OuterCollectionViewCellDelegate {
+    func didSelectImage(image: UIImage) {
         let customScreen = CustomPresentationViewController(image: image)
         customScreen.modalPresentationStyle = .pageSheet
         customScreen.sheetPresentationController?.prefersGrabberVisible = true
         customScreen.transitioningDelegate = self
         present(customScreen, animated: true)
-    }
-}
-
-extension HomeViewController: UIViewControllerTransitioningDelegate {
-    public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return CustomPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

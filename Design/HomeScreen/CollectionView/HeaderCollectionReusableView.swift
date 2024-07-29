@@ -1,8 +1,8 @@
 import UIKit
 
-final class HeaderCollectionReusableView: UICollectionReusableView {
+final class SectionHeaderView: UICollectionReusableView {
     
-    static let identifer = "HeaderCollectionReusableView"
+    static var identifer = "SectionHeaderView"
     
     private let titleSectionLabel: UILabel = {
         let label = UILabel()
@@ -21,15 +21,15 @@ final class HeaderCollectionReusableView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func titleAndSubtitle(text: String) {
+    public func createTitle(text: String) {
         titleSectionLabel.text = text
     }
     
     private func setupAppereance() {
-       self.addSubviews(titleSectionLabel)
+        self.addSubviews(titleSectionLabel)
         NSLayoutConstraint.activate([
-            titleSectionLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 25),
-            titleSectionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 3),
+            titleSectionLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
+            titleSectionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
         ])
     }
 }

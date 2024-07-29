@@ -27,7 +27,7 @@ final class LoginScreenView: UIView {
         textField.borderStyle = .roundedRect
         textField.layer.cornerRadius = 16
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: textFieldColor)
-        textField.backgroundColor = UIColor.brownColor()
+        textField.backgroundColor = .brownColor()
         return textField
     }()
     
@@ -39,7 +39,7 @@ final class LoginScreenView: UIView {
         textField.tintColor = UIColor.white
         textField.font = UIFont.boldFont(ofSize: 20)
         textField.borderStyle = .roundedRect
-        textField.isSecureTextEntry = true
+//        textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 16
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: textFieldColor)
         textField.backgroundColor = UIColor.brownColor()
@@ -47,13 +47,13 @@ final class LoginScreenView: UIView {
     }()
     
     public let enterButton: UIButton = {
-            let button = UIButton()
-            button.setTitle("Enter", for: .normal)
-            button.titleLabel?.font = UIFont.boldFont(ofSize: 20)
-            button.setTitleColor(UIColor.white, for: .normal)
-            button.backgroundColor = UIColor.brownColor()
-            button.layer.cornerRadius = 10
-            return button
+        let button = UIButton()
+        button.setTitle("Enter", for: .normal)
+        button.titleLabel?.font = UIFont.boldFont(ofSize: 20)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor.brownColor()
+        button.layer.cornerRadius = 10
+        return button
     }()
     
     public let registrationButton: UIButton = {
@@ -89,7 +89,14 @@ final class LoginScreenView: UIView {
     }
     
     private func setupApperiance() {
-        self.addSubviews(textFieldsStackView,logoImage,mainTextLabel,registrationButton,enterButton)
+        self.addSubviews(
+            textFieldsStackView,
+            logoImage,
+            mainTextLabel,
+            registrationButton,
+            enterButton
+        )
+        
         NSLayoutConstraint.activate([
             logoImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
             logoImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),

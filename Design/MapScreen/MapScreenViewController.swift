@@ -5,7 +5,7 @@ import CoreLocation
 final class MapScreenViewController: UIViewController {
     
     private let mapScreenView: MapScreenView
-        
+    
     override func loadView() {
         super.loadView()
         self.view = mapScreenView
@@ -13,7 +13,7 @@ final class MapScreenViewController: UIViewController {
         actionButtons()
         setupTitle()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -40,7 +40,38 @@ final class MapScreenViewController: UIViewController {
         mapScreenView.routeButton.addTarget(self, action: #selector(buildingARoute), for: .touchUpInside)
         mapScreenView.resetButton.addTarget(self, action: #selector(deletingAndUpdatingARoute), for: .touchUpInside)
     }
+}
 
+extension MapScreenViewController {
+    @objc private func addingAnAddress() {
+        addAddressAlert(title: "Add address", placeholder: "Enter address") { [self] text in
+            setupPlaceMark(addressPlace: text)
+        }
+    }
+    @objc private func buildingARoute() {
+        for index in 0...MapAnnotationArray.annotationArray.count - 2 {
+            createDirectionRequest(startCoordinate: MapAnnotationArray.annotationArray[index].coordinate, destinationCoordinate: MapAnnotationArray.annotationArray[index + 1].coordinate)
+        }
+        mapScreenView.mapView.showAnnotations(MapAnnotationArray.annotationArray, animated: true)
+    }
+    @objc private func deletingAndUpdatingARoute() {
+        mapScreenView.mapView.removeOverlays(mapScreenView.mapView.overlays)
+        mapScreenView.mapView.removeAnnotations(mapScreenView.mapView.annotations)
+        MapAnnotationArray.annotationArray = [MKPointAnnotation]()
+        mapScreenView.routeButton.isHidden = true
+        mapScreenView.resetButton.isHidden = true
+    }
+}
+
+extension MapScreenViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: any MKOverlay) -> MKOverlayRenderer {
+        let render = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+        render.strokeColor = .blue
+        return render
+    }
+}
+
+extension MapScreenViewController {
     private func createDirectionRequest(startCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D ) {
         let startLocation = MKPlacemark(coordinate: startCoordinate)
         let destinationLocation = MKPlacemark(coordinate: destinationCoordinate)
@@ -52,8 +83,7 @@ final class MapScreenViewController: UIViewController {
         let direction = MKDirections(request: request)
         direction.calculate { responce, error in
             if let error = error {
-                print(error.localizedDescription)
-                return
+                fatalError()
             }
             guard let responce = responce else {
                 self.notificationAlert(title: "Error", message: "Route Unavailable")
@@ -88,34 +118,5 @@ final class MapScreenViewController: UIViewController {
             }
             mapScreenView.mapView.showAnnotations(MapAnnotationArray.annotationArray, animated: true)
         }
-    }
-}
-
-extension MapScreenViewController {
-    @objc private func addingAnAddress() {
-        addAddressAlert(title: "Add address", placeholder: "Enter address") { [self] text in
-          setupPlaceMark(addressPlace: text)
-        }
-    }
-    @objc private func buildingARoute() {
-        for index in 0...MapAnnotationArray.annotationArray.count - 2 {
-            createDirectionRequest(startCoordinate: MapAnnotationArray.annotationArray[index].coordinate, destinationCoordinate: MapAnnotationArray.annotationArray[index + 1].coordinate)
-        }
-        mapScreenView.mapView.showAnnotations(MapAnnotationArray.annotationArray, animated: true)
-    }
-    @objc private func deletingAndUpdatingARoute() {
-        mapScreenView.mapView.removeOverlays(mapScreenView.mapView.overlays)
-        mapScreenView.mapView.removeAnnotations(mapScreenView.mapView.annotations)
-        MapAnnotationArray.annotationArray = [MKPointAnnotation]()
-        mapScreenView.routeButton.isHidden = true
-        mapScreenView.resetButton.isHidden = true
-    }
-}
-
-extension MapScreenViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, rendererFor overlay: any MKOverlay) -> MKOverlayRenderer {
-        let render = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-        render.strokeColor = .blue
-        return render
     }
 }

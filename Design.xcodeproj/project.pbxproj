@@ -38,11 +38,14 @@
 		1A9C28012C1BA67F00193C12 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9C28002C1BA67F00193C12 /* ToDoViewController.swift */; };
 		1A9C28072C1BA6D300193C12 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9C28062C1BA6D300193C12 /* PictureViewController.swift */; };
 		1ACC09102C28B50700FC846C /* TaskRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC090F2C28B50700FC846C /* TaskRealm.swift */; };
+		1ADC28762C552C5400BAE715 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADC28752C552C5400BAE715 /* RegistrationViewModel.swift */; };
+		1ADC287C2C566F1F00BAE715 /* OuterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADC287B2C566F1F00BAE715 /* OuterCollectionViewCell.swift */; };
 		1ADDA06E2C1F016F00B2B6A8 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADDA06D2C1F016F00B2B6A8 /* PictureView.swift */; };
 		1ADDA0702C1F2BF400B2B6A8 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADDA06F2C1F2BF400B2B6A8 /* PictureCollectionViewCell.swift */; };
 		1ADDA0742C20BE1800B2B6A8 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADDA0732C20BE1800B2B6A8 /* APIService.swift */; };
 		1AE9678D2C25CC6800BB8172 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1AE9678C2C25CC6800BB8172 /* RealmSwift */; };
 		1AFDF1F52C324BDA0059E9E6 /* Extension + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFDF1F42C324BDA0059E9E6 /* Extension + UIFont.swift */; };
+		384F08FB2C5353270053A911 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F08FA2C5353270053A911 /* LoginViewModel.swift */; };
 		38F0922A2C2EFD9200DCA2D5 /* Extension + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F092292C2EFD9200DCA2D5 /* Extension + UIImage.swift */; };
 		38F0922C2C2EFF4F00DCA2D5 /* Extension + UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F0922B2C2EFF4F00DCA2D5 /* Extension + UITableViewCell.swift */; };
 		38F092502C2F0D8500DCA2D5 /* PictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F0924F2C2F0D8500DCA2D5 /* PictureModel.swift */; };
@@ -80,10 +83,13 @@
 		1A9C28002C1BA67F00193C12 /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 		1A9C28062C1BA6D300193C12 /* PictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		1ACC090F2C28B50700FC846C /* TaskRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRealm.swift; sourceTree = "<group>"; };
+		1ADC28752C552C5400BAE715 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		1ADC287B2C566F1F00BAE715 /* OuterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OuterCollectionViewCell.swift; sourceTree = "<group>"; };
 		1ADDA06D2C1F016F00B2B6A8 /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
 		1ADDA06F2C1F2BF400B2B6A8 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		1ADDA0732C20BE1800B2B6A8 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		1AFDF1F42C324BDA0059E9E6 /* Extension + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIFont.swift"; sourceTree = "<group>"; };
+		384F08FA2C5353270053A911 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		38F092292C2EFD9200DCA2D5 /* Extension + UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIImage.swift"; sourceTree = "<group>"; };
 		38F0922B2C2EFF4F00DCA2D5 /* Extension + UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITableViewCell.swift"; sourceTree = "<group>"; };
 		38F0924F2C2F0D8500DCA2D5 /* PictureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureModel.swift; sourceTree = "<group>"; };
@@ -109,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				1A03AF592C22706200F5E28D /* CustomHomeCollectionViewCell.swift */,
+				1ADC287B2C566F1F00BAE715 /* OuterCollectionViewCell.swift */,
 				1A8050462C33DACA001BAA24 /* HeaderCollectionReusableView.swift */,
 			);
 			path = CollectionView;
@@ -119,6 +126,7 @@
 			children = (
 				1A3AA8FC2C400FFB009855B8 /* RegistrationScreenViewController.swift */,
 				1A3AA8FE2C40102E009855B8 /* RegistrationScreenView.swift */,
+				1ADC28752C552C5400BAE715 /* RegistrationViewModel.swift */,
 			);
 			path = RegistrationScreen;
 			sourceTree = "<group>";
@@ -128,6 +136,7 @@
 			children = (
 				1A551EF02C3EB628003EC98E /* LoginScreenViewController.swift */,
 				1A551EF22C3EBC83003EC98E /* LoginScreenView.swift */,
+				384F08FA2C5353270053A911 /* LoginViewModel.swift */,
 			);
 			path = LoginScreen;
 			sourceTree = "<group>";
@@ -374,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A8ABDF42C48C76F00187AB1 /* GoogleService-Info.plist in Sources */,
+				1ADC28762C552C5400BAE715 /* RegistrationViewModel.swift in Sources */,
 				1A8BC94F2C49A2C10010AA0D /* MapScreenView.swift in Sources */,
 				1A9C27E62C1B9FBF00193C12 /* HomeViewController.swift in Sources */,
 				1ADDA0742C20BE1800B2B6A8 /* APIService.swift in Sources */,
@@ -386,6 +396,7 @@
 				1A3AA8FD2C400FFB009855B8 /* RegistrationScreenViewController.swift in Sources */,
 				1A9C27FF2C1BA51200193C12 /* TabBarController.swift in Sources */,
 				1A8ABDF92C48D6FD00187AB1 /* Extension + UIViewController.swift in Sources */,
+				384F08FB2C5353270053A911 /* LoginViewModel.swift in Sources */,
 				1ADDA06E2C1F016F00B2B6A8 /* PictureView.swift in Sources */,
 				1A9C28012C1BA67F00193C12 /* ToDoViewController.swift in Sources */,
 				1ACC09102C28B50700FC846C /* TaskRealm.swift in Sources */,
@@ -407,6 +418,7 @@
 				1A3AA8FF2C40102E009855B8 /* RegistrationScreenView.swift in Sources */,
 				1A80504B2C33E6DE001BAA24 /* Extension + UIColor.swift in Sources */,
 				1A8BC94D2C49A2B30010AA0D /* MapScreenViewController.swift in Sources */,
+				1ADC287C2C566F1F00BAE715 /* OuterCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

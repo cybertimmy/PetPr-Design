@@ -1,12 +1,13 @@
 import UIKit
-import FirebaseAuth
 
 final class LoginScreenViewContoller: UIViewController {
     
     private let loginScreenView: LoginScreenView
+    private let viewModel: LoginViewModel
     
-    init() {
+    init(_ viewModel: LoginViewModel) {
         self.loginScreenView = LoginScreenView()
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -49,20 +50,17 @@ extension LoginScreenViewContoller {
             notificationAlert(title: "Error fields", message: "Fields cannot be empty")
             return
         }
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            if let error = error as NSError? {
-                print("Error logging in: \(error.localizedDescription)")
-                print("Error details: \(error.userInfo)")
+        
+        viewModel.login(email, password) { success in
+            if success {
+                self.transitionToTabBar()
+            } else {
                 self.notificationAlert(title: "Error", message: "Invalid email or password")
-                return
             }
-            print("User logged in successfully")
-            self.transitionToTabBar()
-            self.notificationAlert(title: "Succesful", message: "Registration completed successfully. Now you can enter")
         }
     }
     
     @objc private func didPressedForRegistrationAccount() {
-        navigationController?.pushViewController(RegistrationScreenViewController(), animated: true)
+        navigationController?.pushViewController(RegistrationScreenViewController(RegistrationViewModel()), animated: true)
     }
 }

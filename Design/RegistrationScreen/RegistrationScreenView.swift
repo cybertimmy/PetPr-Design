@@ -1,6 +1,5 @@
 import UIKit
 
-
 final class RegistrationScreenView: UIView {
     
     private var textFieldsStackView: UIStackView!

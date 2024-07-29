@@ -8,27 +8,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError as NSError {
-            print("Error signing out:\(signOutError.localizedDescription)")
-        }
-        let loginVC = LoginScreenViewContoller()
-        let navagationController = UINavigationController(rootViewController: loginVC)
-        self.window?.rootViewController = navagationController
-        self.window?.makeKeyAndVisible()
-        
-//        if Auth.auth().currentUser != nil {
-//            let tabBar = TabBarController()
-//            let navigationController = UINavigationController(rootViewController: tabBar)
-//            self.window?.rootViewController = navigationController
-//        } else {
-//            let loginVC = LoginScreenViewContoller()
-//            let navigationController = UINavigationController(rootViewController: loginVC)
-//            self.window?.rootViewController = navigationController
+//        do {
+//            try Auth.auth().signOut()
+//        } catch _ as NSError {
+//            fatalError("Error signing")
 //        }
+//        let loginVC = LoginScreenViewContoller(LoginViewModel())
+//        let navagationController = UINavigationController(rootViewController: loginVC)
+//        self.window?.rootViewController = navagationController
 //        self.window?.makeKeyAndVisible()
-
+        if Auth.auth().currentUser != nil {
+            let tabBar = TabBarController()
+            self.window?.rootViewController = tabBar
+        } else {
+            let loginVC = LoginScreenViewContoller(LoginViewModel())
+            let navigationController = UINavigationController(rootViewController: loginVC)
+            self.window?.rootViewController = navigationController
+        }
+        self.window?.makeKeyAndVisible()
 }
     
     func sceneDidDisconnect(_ scene: UIScene) {

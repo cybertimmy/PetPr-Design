@@ -5,9 +5,11 @@ import FirebaseFirestore
 final class RegistrationScreenViewController: UIViewController {
     
     private let registrationScreenView: RegistrationScreenView
+    private let resigtrarionViewModel: RegistrationViewModel
         
-    init() {
+    init(_ viewModel: RegistrationViewModel) {
         self.registrationScreenView = RegistrationScreenView()
+        self.resigtrarionViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -37,42 +39,22 @@ extension RegistrationScreenViewController {
               let password = registrationScreenView.passwordTextField.text, !password.isEmpty,
               let repeatPassword = registrationScreenView.repeatPasswordTextField.text, !repeatPassword.isEmpty else {
             notificationAlert(title: "Error", message: "Email and password must not be empty")
-            print("Email and password must not be empty")
             return
         }
         if password != repeatPassword {
-            print("Eror password dont equal repeat password")
             notificationAlert(title: "Error", message: "Eror password dont equal repeat password")
             return
         }
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
-            guard self != nil else {return}
-            if let error = error {
-                    print("Error registering user:\(error.localizedDescription)")
-                    return
-            }
-            self?.saveUserToDataBase(email: email, password: password)
-            self?.transitionToLoginScreen()
-            self?.notificationAlert(title: "Registration successful", message: "You can log in")
-        }
-    }
-    
-    private func saveUserToDataBase(email: String, password:String) {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        let userData = ["email": email,
-                        "password": password]
-        let db = Firestore.firestore()
-        db.collection("users").document(uid).setData(userData) { error in
-            if let error = error {
-                print("Error saving user data: \(error.localizedDescription)")
+        resigtrarionViewModel.register(email, password) { sucess in
+            if sucess {
+                self.notificationAlert(title: "Registration successful", message: "You can log in")
+                self.transitionToLoginScreen()
             } else {
-                print("User data saved sucessful")
+                self.notificationAlert(title: "Error", message: "Invalid regestritaion, try again")
             }
         }
     }
-    
+        
     private func transitionToLoginScreen() {
         navigationController?.popViewController(animated: true)
     }

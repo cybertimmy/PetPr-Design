@@ -1,20 +1,15 @@
 import UIKit
 
 final class HomeView: UIView {
-    
-    var openDetailsScreenDelegate: OpenDetailScreen?
+
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = UIColor.systemBackground
-        collectionView.register(CustomHomeCollectionViewCell.self, forCellWithReuseIdentifier: CustomHomeCollectionViewCell.identifer)
-        collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: HeaderCollectionReusableView.self.description(), withReuseIdentifier: HeaderCollectionReusableView.identifer)
         collectionView.backgroundColor = .none
-        collectionView.layer.cornerRadius = 8
-        collectionView.layer.shadowOffset = CGSize(width: -4, height: 4)
-        collectionView.layer.shadowOpacity = 0.3
+        collectionView.register(OuterCollectionViewCell.self, forCellWithReuseIdentifier: OuterCollectionViewCell.identifer)
+        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.identifer)
         return collectionView
     }()
     
@@ -35,14 +30,10 @@ final class HomeView: UIView {
         label.textColor = UIColor.brownColor()
         return label
     }()
-        
-    private let arrayImage: [[UIImage]] = [
-        [UIImage.imageAppartament1!, UIImage.imageAppartament2!, UIImage.imageAppartament3!, UIImage.imageAppartament4!, UIImage.imageAppartament5!, UIImage.imageAppartament6!],
-        
-        [UIImage.imageAppartament7!, UIImage.imageAppartament8!, UIImage.imageAppartament9!, UIImage.imageAppartament10!, UIImage.imageAppartament11!, UIImage.imageAppartament12!],
-        
-        [UIImage.imageAppartament13!, UIImage.imageAppartament14!, UIImage.imageAppartament15!, UIImage.imageAppartament16!, UIImage.imageAppartament17!, UIImage.imageAppartament18!]
-    ]
+    
+    private let arrayImage1: [UIImage] =  [.imageAppartament1!, .imageAppartament2!, .imageAppartament3!, .imageAppartament4!, .imageAppartament5!, .imageAppartament6!]
+    private let arrayImage2: [UIImage] =  [.imageAppartament7!, .imageAppartament8!, .imageAppartament9!, .imageAppartament10!, .imageAppartament11!, .imageAppartament12!]
+    private let arrayImage3: [UIImage] =     [.imageAppartament13!, .imageAppartament14!, .imageAppartament15!, .imageAppartament16!, .imageAppartament17!, .imageAppartament18!]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,7 +49,6 @@ final class HomeView: UIView {
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.setCollectionViewLayout(createLayout(), animated: false)
     }
     
     private func setupBGColor() {
@@ -72,7 +62,7 @@ final class HomeView: UIView {
             userImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             userImage.widthAnchor.constraint(equalToConstant: 60),
             userImage.heightAnchor.constraint(equalToConstant: 60),
-
+            
             userNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 22),
             userNameLabel.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 15),
             
@@ -84,90 +74,54 @@ final class HomeView: UIView {
     }
 }
 
-//MARK: - Create Layout
-extension HomeView {
-    
-    private func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { [weak self]
-            index, env in
-            return self?.getSectionFor(index: index)
-        }
-        return layout
-    }
-    
-    private func getSectionFor(index: Int) -> NSCollectionLayoutSection {
-        switch index {
-        case 0: return Collection.createSection(itemWidth: .fractionalWidth(1),
-                                     itemHeight: .absolute(200),
-                                     interItemSpacing: 10,
-                                     groupWidth: .fractionalWidth(1 / 2),
-                                     groupHeight: .absolute(100),
-                                     interGroupSpacing: 10,
-                                     headerHight: .absolute(50),
-                                     sectionInsets: .init(top: 10, leading: 10, bottom: 120, trailing: 10),
-                                     scrollBehavior: .continuous)
-        case 1: return Collection.createSection(itemWidth: .fractionalWidth(1),
-                                     itemHeight: .absolute(200),
-                                     interItemSpacing: 10,
-                                     groupWidth: .fractionalWidth(1 / 2),
-                                     groupHeight: .absolute(100),
-                                     interGroupSpacing: 10,
-                                     headerHight: .absolute(50),
-                                     sectionInsets: .init(top: 10, leading: 10, bottom: 120, trailing: 10),
-                                     scrollBehavior: .continuous)
-        case 2: return Collection.createSection(itemWidth: .fractionalWidth(1),
-                                     itemHeight: .absolute(200),
-                                     interItemSpacing: 10,
-                                     groupWidth: .fractionalWidth(1 / 2),
-                                     groupHeight: .absolute(100),
-                                     interGroupSpacing: 10,
-                                     headerHight: .absolute(50),
-                                     sectionInsets: .init(top: 10, leading: 10, bottom: 120, trailing: 10),
-                                     scrollBehavior: .continuous)
-        default: break
-        }
-        return Collection.emptySection()
-    }
-}
-
-//MARK: - DataSource, Delegate - CollectionView
-extension HomeView: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        arrayImage.count
+        3
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        arrayImage[section].count
+        1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomHomeCollectionViewCell.identifer, for: indexPath) as? CustomHomeCollectionViewCell else {
-            fatalError("Error")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OuterCollectionViewCell.identifer, for: indexPath) as! OuterCollectionViewCell
+        switch indexPath.section {
+        case 0: cell.setInnerData(data: arrayImage1)
+        case 1: cell.setInnerData(data: arrayImage2)
+        case 2: cell.setInnerData(data: arrayImage3)
+        default:
+            break
         }
-        let images = arrayImage[indexPath.section][indexPath.item]
-        cell.configure(with: images)
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 600, height: 200)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        50
+    }
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == HeaderCollectionReusableView.self.description() {
-            let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.identifer, for: indexPath) as! HeaderCollectionReusableView
-                
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.identifer, for: indexPath) as! SectionHeaderView
             switch indexPath.section {
-            case 0: cell.titleAndSubtitle(text:"Design appartament")
-            case 1: cell.titleAndSubtitle(text: "Design bathroom")
-            case 2: cell.titleAndSubtitle(text: "Design children`s room ")
+            case 0: header.createTitle(text: "Design appartament")
+            case 1: header.createTitle(text: "Design bathroom")
+            case 2: header.createTitle(text: "Design children`s room")
             default:
                 break
             }
-            return cell
+            return header
         }
         return UICollectionReusableView()
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let image = self.arrayImage[indexPath.section][indexPath.item]
-        openDetailsScreenDelegate?.openDetailScreen(image: image)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 50)
     }
 }
+
+
