@@ -58,6 +58,7 @@ final class RegistrationScreenView: UIView {
         
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupDelegateTexTF()
         setupStackView()
         setupApperiance()
         setupBgColor()
@@ -80,6 +81,12 @@ final class RegistrationScreenView: UIView {
         self.backgroundColor = UIColor.darkBGColor()
     }
     
+    private func setupDelegateTexTF() {
+        passwordTextField.delegate = self
+        repeatPasswordTextField.delegate = self
+        loginTextField.delegate = self
+    }
+    
     private func setupApperiance() {
         self.addSubviews(textFieldsStackView,registerButton)
         NSLayoutConstraint.activate([
@@ -96,5 +103,12 @@ final class RegistrationScreenView: UIView {
             registerButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -50),
             registerButton.heightAnchor.constraint(equalToConstant: 50),
         ])
+    }
+}
+
+extension RegistrationScreenView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

@@ -82,7 +82,7 @@ extension MapScreenViewController {
         request.requestsAlternateRoutes = true
         let direction = MKDirections(request: request)
         direction.calculate { responce, error in
-            if let error = error {
+            if error != nil {
                 fatalError()
             }
             guard let responce = responce else {

@@ -31,18 +31,8 @@ final class PictureCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with urlString: String) {
-        guard let url = URL(string: urlString) else {
-            return
+        PictureModel.loadImage(from: urlString) { image in
+            self.imageView.image = image
         }
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            DispatchQueue.main.async {
-                let image = UIImage(data: data)
-                self.imageView.image = image
-            }
-        }
-        task.resume()
     }
 }

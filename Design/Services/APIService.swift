@@ -10,7 +10,6 @@ final class APIService {
     private func getDataFromUrl<T: Codable>(_ urlRequest: URLRequest, parseModel: T.Type, completion: @escaping (T?) -> ()) {
         _ = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             guard let data = data else { return }
-            
             do {
                 let result = try JSONDecoder().decode(T.self, from: data)
                 completion(result)
@@ -28,8 +27,8 @@ final class APIService {
             return
         }
         let request = URLRequest(url: url)
-        getDataFromUrl(request, parseModel: APIResponce.self) { reslut in
-            completion(reslut)
+        getDataFromUrl(request, parseModel: APIResponce.self) { result in
+            completion(result)
         }
     }
 }

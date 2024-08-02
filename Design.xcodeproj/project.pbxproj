@@ -17,6 +17,7 @@
 		1A4DFC6D2C3D74BD0049285F /* CustomPresentationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4DFC6C2C3D74BD0049285F /* CustomPresentationCollectionViewCell.swift */; };
 		1A551EF12C3EB628003EC98E /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A551EF02C3EB628003EC98E /* LoginScreenViewController.swift */; };
 		1A551EF32C3EBC83003EC98E /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A551EF22C3EBC83003EC98E /* LoginScreenView.swift */; };
+		1A5E50AE2C5CCA7B000E7D4F /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 1AE9678C2C25CC6800BB8172 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1A8050472C33DACA001BAA24 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8050462C33DACA001BAA24 /* HeaderCollectionReusableView.swift */; };
 		1A80504B2C33E6DE001BAA24 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A80504A2C33E6DE001BAA24 /* Extension + UIColor.swift */; };
 		1A8ABDF42C48C76F00187AB1 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 1A8ABDF32C48C76800187AB1 /* GoogleService-Info.plist */; };
@@ -50,6 +51,20 @@
 		38F092502C2F0D8500DCA2D5 /* PictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F0924F2C2F0D8500DCA2D5 /* PictureModel.swift */; };
 		38F092532C2F0F1400DCA2D5 /* PicturesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F092522C2F0F1400DCA2D5 /* PicturesDTO.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1A5E50AF2C5CCA7B000E7D4F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1A5E50AE2C5CCA7B000E7D4F /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A03AF592C22706200F5E28D /* CustomHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHomeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -301,6 +316,7 @@
 				1A9C27DA2C1B9FBF00193C12 /* Sources */,
 				1A9C27DB2C1B9FBF00193C12 /* Frameworks */,
 				1A9C27DC2C1B9FBF00193C12 /* Resources */,
+				1A5E50AF2C5CCA7B000E7D4F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

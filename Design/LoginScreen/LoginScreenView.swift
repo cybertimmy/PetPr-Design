@@ -39,7 +39,7 @@ final class LoginScreenView: UIView {
         textField.tintColor = UIColor.white
         textField.font = UIFont.boldFont(ofSize: 20)
         textField.borderStyle = .roundedRect
-//        textField.isSecureTextEntry = true
+        textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 16
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: textFieldColor)
         textField.backgroundColor = UIColor.brownColor()
@@ -67,6 +67,7 @@ final class LoginScreenView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupDelegateTexTF()
         setupStackView()
         setupBgColor()
         setupApperiance()
@@ -78,6 +79,11 @@ final class LoginScreenView: UIView {
     
     private func setupBgColor() {
         self.backgroundColor = UIColor.darkBGColor()
+    }
+    
+    private func setupDelegateTexTF() {
+        passwordTextField.delegate = self
+        loginTextField.delegate = self
     }
     
     private func setupStackView() {
@@ -121,5 +127,12 @@ final class LoginScreenView: UIView {
             enterButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -50),
             enterButton.heightAnchor.constraint(equalToConstant: 50),
         ])
+    }
+}
+
+extension LoginScreenView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

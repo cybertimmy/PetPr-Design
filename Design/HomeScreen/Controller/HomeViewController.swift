@@ -4,11 +4,9 @@ final class HomeViewController: UIViewController {
     
     private var isHighlighted = false
     private let customFirstView: HomeView
-    private let customCell: OuterCollectionViewCell
 
     init() {
         self.customFirstView = HomeView()
-        self.customCell = OuterCollectionViewCell()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -19,13 +17,13 @@ final class HomeViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.view = customFirstView
+        customFirstView.delegate = self
         setupTitle()
         tapGesture()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        customCell.delegate = self
     }
     
     private func setupTitle() {
@@ -55,16 +53,6 @@ extension HomeViewController {
         self.present(imagePicker, animated: true, completion: nil)
     }
 }
-
-//extension HomeViewController {
-//    func openDetailScreen(image: UIImage) {
-//        let customScreen = CustomPresentationViewController(image: image)
-//        customScreen.modalPresentationStyle = .pageSheet
-//        customScreen.sheetPresentationController?.prefersGrabberVisible = true
-//        customScreen.transitioningDelegate = self
-//        present(customScreen, animated: true)
-//    }
-//}
 
 extension HomeViewController: UIViewControllerTransitioningDelegate {
     public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {

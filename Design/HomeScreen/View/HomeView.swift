@@ -2,7 +2,8 @@ import UIKit
 
 final class HomeView: UIView {
 
-    
+    public weak var delegate: OuterCollectionViewCellDelegate?
+
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -85,7 +86,9 @@ extension HomeView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OuterCollectionViewCell.identifer, for: indexPath) as! OuterCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OuterCollectionViewCell.identifer, for: indexPath) as? OuterCollectionViewCell else {
+            fatalError()
+        }
         switch indexPath.section {
         case 0: cell.setInnerData(data: arrayImage1)
         case 1: cell.setInnerData(data: arrayImage2)
@@ -93,6 +96,7 @@ extension HomeView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         default:
             break
         }
+        cell.delegate = delegate.self
         return cell
     }
     
